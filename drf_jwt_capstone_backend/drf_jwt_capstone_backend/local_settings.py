@@ -7,9 +7,9 @@ SECRET_KEY = '-2#se2w2t^20h%7g6_6+(zztxlmz#99f*r(dgsri7@ip_8zov@'
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'drf_jwt_captsone_database',
+        'NAME': 'fish_sitter_database',
         'USER': 'root',
-        'PASSWORD': 'YOUR MYSQL PASSWORD HERE',
+        'PASSWORD': 'oregoN2030!',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
