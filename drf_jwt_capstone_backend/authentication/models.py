@@ -11,6 +11,6 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    zip_code = models.CharField(max_length=10)
+    zip_code = models.IntegerField()
     experience_level = models.CharField(max_length=20)
     # member_since = models.DateField
