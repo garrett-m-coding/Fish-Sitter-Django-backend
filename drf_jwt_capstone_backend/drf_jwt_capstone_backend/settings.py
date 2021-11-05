@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'plants.apps.PlantsConfig',
     'fish.apps.FishConfig',
     'food.apps.FoodConfig',
-    # 'water_parameters.apps.Water_ParametersConfig',
+    'water_parameters.apps.WaterParametersConfig',
 ]
 
 MIDDLEWARE = [
