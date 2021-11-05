@@ -7,3 +7,4 @@ class Aquarium(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     is_active = models.BooleanField(True)
     water_capacity = models.IntegerField()
+    name = models.CharField(max_length=100, null=True)
