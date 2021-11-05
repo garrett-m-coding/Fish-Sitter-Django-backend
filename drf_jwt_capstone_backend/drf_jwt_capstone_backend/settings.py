@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'aquariums.apps.AquariumsConfig',
     'plants.apps.PlantsConfig',
-    # 'fish.apps.FishConfig',
+    'fish.apps.FishConfig',
     'food.apps.FoodConfig',
     # 'water_parameters.apps.Water_ParametersConfig',
 ]
