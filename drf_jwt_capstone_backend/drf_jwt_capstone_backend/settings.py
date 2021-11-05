@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'corsheaders',
     'aquariums.apps.AquariumsConfig',
+    'plants.apps.PlantsConfig',
+    # 'fish.apps.FishConfig',
+    # 'food.apps.FoodConfig',
+    # 'water_parameters.apps.Water_ParametersConfig',
 ]
 
 MIDDLEWARE = [

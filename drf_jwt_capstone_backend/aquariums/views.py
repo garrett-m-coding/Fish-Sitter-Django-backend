@@ -18,7 +18,7 @@ def get_all_aquariums(request):
     return Response(serializer.data)
 
 
-@api_view(['POST', 'GET'])
+@api_view(['POST', 'GET', 'PATCH'])
 @permission_classes([IsAuthenticated])
 def user_aquariums(request):
     print('User', f"{request.user.id} {request.user.username} {request.user.zip_code}")
@@ -32,3 +32,7 @@ def user_aquariums(request):
         aquariums = Aquarium.objects.filter(user_id=request.user.id)
         serializer = AquariumSerializer(aquariums, many=True)
         return Response(serializer.data)
+    # elif request.method == 'PATCH':
+    #     aquariums = Aquarium.objects.filter(user_id=request.user.id)
+    #     serializer = AquariumSerializer(aquariums, many=True)
+    #     return Response(serializer.data)
