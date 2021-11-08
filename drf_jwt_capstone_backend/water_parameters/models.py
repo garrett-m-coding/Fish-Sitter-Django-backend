@@ -4,6 +4,8 @@ from aquariums.models import Aquarium
 User = get_user_model()
 
 # Create your models here.
+
+
 class Water_Parameter(models.Model):
     aquarium = models.ForeignKey(Aquarium, on_delete=models.CASCADE)
     general_hardness_ppm = models.IntegerField()
@@ -17,4 +19,3 @@ class Water_Parameter(models.Model):
     date_measured = models.DateField()
     before_noon = models.BooleanField()
     after_noon = models.BooleanField()
-
