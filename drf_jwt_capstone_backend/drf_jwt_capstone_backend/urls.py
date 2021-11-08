@@ -20,4 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('authentication.urls')),
     path('api/aquariums/', include('aquariums.urls')),
+    path('api/fish/', include('fish.urls')),
+    # path('api/food/', include('food.urls')),
+    # path('api/plants/', include('plants.urls')),
+    # path('api/water_parameters/', include('water_parameters.urls')),
 ]

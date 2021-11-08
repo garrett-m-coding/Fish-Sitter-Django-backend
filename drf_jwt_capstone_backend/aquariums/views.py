@@ -18,7 +18,7 @@ def get_all_aquariums(request):
     return Response(serializer.data)
 
 
-@api_view(['POST', 'GET', 'PATCH'])
+@api_view(['POST', 'GET'])
 @permission_classes([IsAuthenticated])
 def user_aquariums(request):
     print('User', f"{request.user.id} {request.user.username} {request.user.zip_code}")
@@ -32,7 +32,21 @@ def user_aquariums(request):
         aquariums = Aquarium.objects.filter(user_id=request.user.id)
         serializer = AquariumSerializer(aquariums, many=True)
         return Response(serializer.data)
-    # elif request.method == 'PATCH':
-    #     aquariums = Aquarium.objects.filter(user_id=request.user.id)
-    #     serializer = AquariumSerializer(aquariums, many=True)
-    #     return Response(serializer.data)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticated])
+def aquarium_details(request, pk):
+    aquarium = Aquarium.objects.get(pk=pk)
+    if request.method == 'GET':
+        serializer = AquariumSerializer(aquarium)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = AquariumSerializer(aquarium, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    elif request.method == 'DELETE':
+        aquarium.delete()
+        return Response({'message': 'Aquarium was successfully deleted.'}, status=status.HTTP_204_NO_CONTENT)
