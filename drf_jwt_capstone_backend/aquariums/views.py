@@ -4,7 +4,15 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
 from .models import Aquarium
+from fish.models import Fish
+from food.models import Food
+from plants.models import Plant
+from water_parameters.models import Water_Parameter
 from .serializers import AquariumSerializer
+from fish.serializers import FishSerializer
+from food.serializers import FoodSerializer
+from plants.serializers import PlantSerializer
+from water_parameters.serializers import Water_ParameterSerializer
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -16,6 +24,30 @@ def get_all_aquariums(request):
     aquariums = Aquarium.objects.all()
     serializer = AquariumSerializer(aquariums, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_all_aquarium_relations(request):
+	user = request.user
+	aquarium = Aquarium.objects.get(user_id=user.id)
+	fish = Fish.objects.filter(aquarium=aquarium.id)
+	food = Food.objects.filter(aquarium=aquarium.id)
+	plants = Plant.objects.filter(aquarium=aquarium.id)
+	water_parameters = Water_Parameter.objects.filter(aquarium=aquarium.id)
+	aquarium_serializer = AquariumSerializer(aquarium)
+	fish_serializer = FishSerializer(fish, many=True)
+	food_serializer = FoodSerializer(food, many=True)
+	plants_serializer = PlantSerializer(plants, many=True)
+	water_parameters_serializer = Water_ParameterSerializer(water_parameters, many=True)
+	custom_response_dictionary = {
+		'aquarium': aquarium_serializer.data,
+		'fish': fish_serializer.data,
+		'food': food_serializer.data,
+		'plants': plants_serializer.data,
+		'water_parameters': water_parameters_serializer.data
+	}
+	return Response(custom_response_dictionary)
+
 
 
 @api_view(['POST', 'GET'])

@@ -10,7 +10,7 @@ class Water_Parameter(models.Model):
     aquarium = models.ForeignKey(Aquarium, on_delete=models.CASCADE)
     general_hardness_ppm = models.IntegerField()
     carbonate_hardness_ppm = models.IntegerField()
-    power_of_hydrogen = models.IntegerField()
+    power_of_hydrogen = models.DecimalField(max_digits = 2,decimal_places=1)
     nitrites_ppm = models.IntegerField()
     nitrates_ppm = models.IntegerField()
     temperature_fahrenheit = models.IntegerField()

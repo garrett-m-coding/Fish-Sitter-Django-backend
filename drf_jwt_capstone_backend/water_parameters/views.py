@@ -3,8 +3,6 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.decorators import api_view, permission_classes
-
-from drf_jwt_capstone_backend import water_parameters
 from .models import Water_Parameter
 from .models import Aquarium
 from .serializers import Water_ParameterSerializer

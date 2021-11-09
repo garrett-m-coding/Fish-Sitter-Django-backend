@@ -11,12 +11,12 @@ User = get_user_model()
 
 
 # Create your views here.
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def get_all_fish(request):
-    fish = Fish.objects.all()
-    serializer = FishSerializer(fish, many=True)
-    return Response(serializer.data)
+# @api_view(['GET'])
+# @permission_classes([AllowAny])
+# def get_all_fish(request):
+#     fish = Fish.objects.all()
+#     serializer = FishSerializer(fish, many=True)
+#     return Response(serializer.data)
 
 
 @api_view(['POST', 'GET'])

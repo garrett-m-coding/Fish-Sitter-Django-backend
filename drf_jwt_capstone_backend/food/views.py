@@ -45,4 +45,4 @@ def food_details(request, pk):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
         food.delete()
-        return Response({'Alert': 'Food was successfully deleted.'}, status=status.HTTP_204_NO_CONTENT)
+        return Response({'Alert': 'Feeding was successfully deleted.'}, status=status.HTTP_204_NO_CONTENT)
