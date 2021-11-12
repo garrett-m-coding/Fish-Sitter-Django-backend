@@ -29,13 +29,19 @@ def aquarium_fish(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'GET':
-        aquarium = Aquarium.objects.filter(id=request.user.id)
-        print(aquarium)
-        for element in aquarium:
-            print(element[{0}])
-        # fish = Fish.objects.filter(aquarium_id=aquarium.id)
+        #create a variable to capture all aquariums belonging to user
+        aquariums = Aquarium.objects.filter(user_id=request.user.id)
+        print(aquariums)
+        #iterate through user's aquarium objects gathering the aquarium object's ids (aquarium.id)
+        aquariums_ids = []
+        for e in aquariums:
+            append(aquariums_ids)
+        #using the single/multiple aquarium.ids search through the fish table and find fish matching these aquarium ids
+        #return this list of the users fish objects to user 
+ 
+        # fish = Fish.objects.filter(aquarium_id=aquariums.id)
         # serializer = FishSerializer(fish, many=True)
-        return Response(serializer.data)
+        # return Response(serializer.data)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
