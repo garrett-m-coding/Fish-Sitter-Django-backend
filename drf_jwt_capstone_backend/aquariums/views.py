@@ -53,6 +53,7 @@ def get_all_aquarium_relations(request):
 @api_view(['POST', 'GET'])
 @permission_classes([IsAuthenticated])
 def user_aquariums(request):
+    print(f"{request.user.first_name} {request.user.last_name} {request.user.username}")
     if request.method == 'POST':
         serializer = AquariumSerializer(data=request.data)
         if serializer.is_valid():
