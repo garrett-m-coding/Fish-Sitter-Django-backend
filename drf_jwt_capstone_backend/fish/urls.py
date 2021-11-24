@@ -4,5 +4,5 @@ from fish import views
 urlpatterns = [
     # path('all/', views.get_all_fish),
     path('users/', views.aquarium_fish),
-    path('details/<int:pk>', views.fish_details),
+    path('details/<int:fk>', views.fish_details),
     ]
