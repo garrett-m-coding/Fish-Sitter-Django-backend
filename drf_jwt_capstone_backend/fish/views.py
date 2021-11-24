@@ -28,26 +28,26 @@ def aquarium_fish(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    elif request.method == 'GET':
+    # elif request.method == 'GET':
         #create a variable to capture all aquariums belonging to user
-        aquariums = Aquarium.objects.filter(user_id=request.user.id)
-        print(aquariums)
+        # aquariums = Aquarium.objects.filter(user_id=request.user.id)
+        # print(aquariums)
         #iterate through user's aquarium objects gathering the aquarium object's ids (aquarium.id)
-        aquariums_ids = []
-        for e in aquariums:
-            append(aquariums_ids)
+        # aquariums_ids = []
+        # for e in aquariums:
+            # append(aquariums_ids)
         #using the single/multiple aquarium.ids search through the fish table and find fish matching these aquarium ids
         #return this list of the users fish objects to user 
  
-        # fish = Fish.objects.filter(aquarium_id=aquariums.id)
+        # fish = Fish.objects.filter(aquarium_id=request.aquarium.id).filter(aquarium_id=aquarium.id)
         # serializer = FishSerializer(fish, many=True)
         # return Response(serializer.data)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def fish_details(request, pk):
-    fish = Fish.objects.get(pk=pk)
+def fish_details(request, fk):
+    fish = Fish.objects.get(fk=fk)
     if request.method == 'GET':
         serializer = FishSerializer(fish)
         return Response(serializer.data)
