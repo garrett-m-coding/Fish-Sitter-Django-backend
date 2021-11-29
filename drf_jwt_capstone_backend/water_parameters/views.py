@@ -32,8 +32,8 @@ def aquarium_water_parameters(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def water_parameters_details(request, fk):
-    water_parameter = Water_Parameter.objects.get(fk=fk)
+def water_parameters_details(request, aquarium_id):
+    water_parameter = Water_Parameter.objects.filter(aquarium=aquarium_id)
     if request.method == 'GET':
         serializer = Water_ParameterSerializer(water_parameter)
         return Response(serializer.data)

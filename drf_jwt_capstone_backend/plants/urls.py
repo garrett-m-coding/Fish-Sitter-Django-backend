@@ -3,5 +3,5 @@ from plants import views
 
 urlpatterns = [
     path('users/', views.aquarium_plants),
-    path('details/<int:fk>', views.plants_details),
+    path('details/<int:aquarium_id>', views.plants_details),
     ]

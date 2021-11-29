@@ -46,17 +46,17 @@ def aquarium_fish(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def fish_details(request, fk):
-    fish = Fish.objects.get(fk=fk)
+def fish_details(request, aquarium_id):
+    fishes = Fish.objects.filter(aquarium=aquarium_id)
     if request.method == 'GET':
-        serializer = FishSerializer(fish)
+        serializer = FishSerializer(fishes, many=True)
         return Response(serializer.data)
     elif request.method == 'PUT':
-        serializer = FishSerializer(fish, data=request.data)
+        serializer = FishSerializer(fishes, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == 'DELETE':
-        fish.delete()
+        fishes.delete()
         return Response({'Alert': 'Fish was successfully deleted.'}, status=status.HTTP_204_NO_CONTENT)

@@ -32,8 +32,8 @@ def aquarium_food(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
-def food_details(request, fk):
-    food = Food.objects.get(fk=fk)
+def food_details(request, aquarium_id):
+    food = Food.objects.filter(aquarium=aquarium_id)
     if request.method == 'GET':
         serializer = FoodSerializer(food)
         return Response(serializer.data)
